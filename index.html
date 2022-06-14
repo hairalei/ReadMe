@@ -5,10 +5,94 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="f5db" type="image/x-icon" />
     <script defer src="app.js"></script>
 
-    <title>ReamMe</title>
+    <title>ReadMe</title>
   </head>
-  <body></body>
+  <body>
+    <header class="logo">
+      <h1><i class="fa-solid fa-bookmark"></i>ReadMe</h1>
+    </header>
+
+    <main>
+        <div class="main__header">
+            <div class="legend">
+                <ul>
+                    <li><i class="fa-solid fa-square"></i>Unread</li>
+                    <li><i class="fa-solid fa-square"></i>Reading</li
+                    <li><i class="fa-solid fa-square"></i>Read</li>
+                </ul>
+            </div>
+            
+            <button class="btn btn--add">
+                &plus; Add book
+            </button>
+        </div>
+
+        <div class="container">
+            <div class="book">
+                <small class="book__pages">413 pages</small>
+
+                <div class="book__hover">
+                    <div class="btns-details">
+                        <button class="btn">
+                            <i class="fa-thin fa-pen"></i>
+                        </button>
+                        <button class="btn">
+                            <i class="fa-thin fa-trash-can"></i>
+                        </button>
+                    </div>
+
+                    <div class="book__details">
+                        <h3 class="book__title">
+                            The Lightning Thief
+                        </h3>
+
+                        <h4 class="book__author">
+                            Rick Riordan
+                        </h4>
+
+                        <button class="btn book__status">
+                            Reading
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <section class="modal">
+        <form action="#">
+            <input type="text" id="search" class="search" placeholder="Search book...">
+        </form>
+
+        <div class="container">
+            <div class="bookAPI__container">
+                <img src="#" alt="book" class="bookAPI__img">
+
+                <div class="bookAPI__details">
+                    <p class="bookAPI__title">
+                        The Lightning Thief
+                    </p>
+                    <p class="bookAPI__author">
+                        Rick Riordan
+                    </p>
+                    <p class="bookAPI__date">2006</p>
+                    <p class="bookAPI__pages">396</p>
+                </div>
+            </div>
+        </div>
+    </section>
+  </body>
 </html>
