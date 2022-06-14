@@ -117,8 +117,6 @@ i.read {
 .container {
   margin: 5rem auto;
   display: flex;
-  /* align-items: center;
-  justify-content: center; */
   flex-wrap: wrap;
   max-width: 80vw;
 }
@@ -142,11 +140,11 @@ i.read {
   bottom: 2rem;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: bold;
   padding: 0.1rem 0.5rem;
   border-radius: 0.3rem;
-  color: #999;
+  color: #555;
   background-color: rgba(0, 0, 0, 0.1);
   z-index: 5;
 }
@@ -212,6 +210,7 @@ i.read {
 }
 
 .book__status {
+  font-size: 1.4rem;
   margin-top: 11rem;
   color: #555;
 }
@@ -352,18 +351,6 @@ i.read {
 }
 
 @media (max-width: 820px) {
-  /* .btn--add {
-    right: 100%;
-    transform: translate(100%, 200%);
-    width: 15rem;
-    font-size: 1.4rem;
-    padding: 0;
-  } */
-
-  /* .btn--add span {
-    display: none;
-  } */
-
   .modal input {
     width: 40rem;
   }
