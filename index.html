@@ -19,80 +19,116 @@
     <title>ReadMe</title>
   </head>
   <body>
-    <header class="logo">
-      <h1><i class="fa-solid fa-bookmark"></i>ReadMe</h1>
-    </header>
+    <div class="content">
+      <header class="logo">
+        <i class="fa-solid fa-bookmark"></i>
+        <h1>ReadMe</h1>
+      </header>
 
-    <main>
+      <main>
         <div class="main__header">
-            <div class="legend">
-                <ul>
-                    <li><i class="fa-solid fa-square"></i>Unread</li>
-                    <li><i class="fa-solid fa-square"></i>Reading</li
-                    <li><i class="fa-solid fa-square"></i>Read</li>
-                </ul>
-            </div>
-            
-            <button class="btn btn--add">
-                &plus; Add book
-            </button>
+          <div class="legends">
+            <ul>
+              <li><i class="fa-solid fa-square unread"></i>Unread</li>
+              <li><i class="fa-solid fa-square reading"></i>Reading</li>
+              <li><i class="fa-solid fa-square read"></i>Read</li>
+            </ul>
+          </div>
+
+          <button class="btn btn--add"><span>&plus;</span> Add book</button>
         </div>
 
         <div class="container">
-            <div class="book">
-                <small class="book__pages">413 pages</small>
+          <div class="book hover">
+            <small class="book__pages">413 pages</small>
 
-                <div class="book__hover">
-                    <div class="btns-details">
-                        <button class="btn">
-                            <i class="fa-thin fa-pen"></i>
-                        </button>
-                        <button class="btn">
-                            <i class="fa-thin fa-trash-can"></i>
-                        </button>
-                    </div>
+            <div class="book__hover">
+              <div class="btns-details">
+                <button class="btn">
+                  <i class="fa-solid fa-pen edit"></i>
+                </button>
+                <button class="btn delete">
+                  <i class="fa-solid fa-trash-can"></i>
+                </button>
+              </div>
 
-                    <div class="book__details">
-                        <h3 class="book__title">
-                            The Lightning Thief
-                        </h3>
+              <div class="book__details">
+                <h3 class="book__title">The Lightning Thief</h3>
 
-                        <h4 class="book__author">
-                            Rick Riordan
-                        </h4>
+                <h4 class="book__author">Rick Riordan</h4>
 
-                        <button class="btn book__status">
-                            Reading
-                        </button>
-
-                    </div>
-                </div>
+                <button class="btn book__status">Reading</button>
+              </div>
             </div>
+          </div>
         </div>
-    </main>
+      </main>
+    </div>
 
+    <div class="layer"></div>
 
     <section class="modal">
+      <nav>
         <form action="#">
-            <input type="text" id="search" class="search" placeholder="Search book...">
+          <input
+            type="text"
+            id="search"
+            class="search"
+            placeholder="Search book..."
+          />
         </form>
+        <button class="btn close">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </nav>
 
-        <div class="container">
-            <div class="bookAPI__container">
-                <img src="#" alt="book" class="bookAPI__img">
+      <div class="containerAPI">
+        <div class="bookAPI__container">
+          <img
+            src="https://covers.openlibrary.org/b/id/7235415-M.jpg"
+            alt="book"
+            class="bookAPI__img"
+          />
 
-                <div class="bookAPI__details">
-                    <p class="bookAPI__title">
-                        The Lightning Thief
-                    </p>
-                    <p class="bookAPI__author">
-                        Rick Riordan
-                    </p>
-                    <p class="bookAPI__date">2006</p>
-                    <p class="bookAPI__pages">396</p>
-                </div>
-            </div>
+          <div class="bookAPI__details">
+            <p class="bookAPI__title">The Lightning Thief</p>
+            <p class="bookAPI__author">by Rick Riordan</p>
+            <p class="bookAPI__date">2006</p>
+            <p class="bookAPI__pages">396 pages</p>
+            <button class="btn btn--add-bookAPI">Add Book</button>
+          </div>
         </div>
+        <div class="bookAPI__container">
+          <img
+            src="https://covers.openlibrary.org/b/id/7235415-M.jpg"
+            alt="book"
+            class="bookAPI__img"
+          />
+
+          <div class="bookAPI__details">
+            <p class="bookAPI__title">The Lightning Thief</p>
+            <p class="bookAPI__author">by Rick Riordan</p>
+            <p class="bookAPI__date">2006</p>
+            <p class="bookAPI__pages">396 pages</p>
+            <button class="btn btn--add-bookAPI">Add Book</button>
+          </div>
+        </div>
+        <div class="bookAPI__container">
+          <img
+            src="https://covers.openlibrary.org/b/id/7235415-M.jpg"
+            alt="book"
+            class="bookAPI__img"
+          />
+
+          <div class="bookAPI__details">
+            <p class="bookAPI__title">The Lightning Thief</p>
+            <p class="bookAPI__author">by Rick Riordan</p>
+            <p class="bookAPI__date">2006</p>
+            <p class="bookAPI__pages">396 pages</p>
+            <button class="btn btn--add-bookAPI">Add Book</button>
+          </div>
+        </div>
+      </div>
     </section>
   </body>
 </html>
