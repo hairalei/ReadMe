@@ -424,6 +424,9 @@ i.read {
 }
 
 @media (max-width: 480px) {
+  .logo {
+    justify-content: center;
+  }
   .main__header {
     flex-direction: column;
     justify-content: center;
