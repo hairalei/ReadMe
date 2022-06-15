@@ -2,8 +2,6 @@
 
 const btnAddBook = document.querySelector(".btn--add");
 const btnSubmit = document.querySelector(".btn--submit");
-const btnEdit = document.querySelector(".edit");
-const btnDelete = document.querySelector(".delete");
 const btnClose = document.querySelector(".close");
 const modal = document.querySelector(".modal");
 const content = document.querySelector(".content");
@@ -12,7 +10,8 @@ const search = document.querySelector(".search");
 const containerAPI = document.querySelector(".containerAPI");
 const container = document.querySelector(".container");
 
-let btnStatus;
+const bookData = localStorage.getItem("books");
+
 //////////////////Event listeners
 
 btnAddBook.addEventListener("click", showModal);
@@ -110,19 +109,17 @@ function addBookToList() {
 
   btnAddbookAPI.forEach((btn) => {
     btn.addEventListener("click", function (e) {
-      console.log(e.target.closest(".bookAPI__details"));
       const parent = e.target.closest(".bookAPI__details");
       const title = parent.querySelector(".bookAPI__title").innerHTML;
       const author = parent
         .querySelector(".bookAPI__author")
         .innerHTML.slice(3);
-      let pages = parent.querySelector(".bookAPI__pages").innerHTML;
-      pages = parseInt(pages);
       const img = parent
         .closest(".bookAPI__container")
         .querySelector(".bookAPI__img")
         .getAttribute("src");
-      console.log(img);
+      let pages = parent.querySelector(".bookAPI__pages").innerHTML;
+      pages = parseInt(pages);
 
       const bookFromAPI = new Book(title, author, pages, 0, img);
       console.log(bookFromAPI);
@@ -132,8 +129,6 @@ function addBookToList() {
 }
 
 function renderBookUI(book) {
-  console.log(book.title);
-
   const markup = `
   <div class="book ${book.status}" style="background: url('${book.cover}">
             <small class="book__pages">${book.pages} pages</small>
@@ -170,7 +165,16 @@ function renderBookUI(book) {
   });
 
   //Change reading status
-  btnStatus = document.querySelectorAll(".book__status");
+  changeBookStatus();
+
+  //Remove book from list
+  removeBook();
+
+  updateLocalStorage();
+}
+
+function changeBookStatus() {
+  const btnStatus = document.querySelectorAll(".book__status");
   let i = 0;
 
   btnStatus.forEach((btn) => {
@@ -189,6 +193,48 @@ function renderBookUI(book) {
 
       btn.closest(".book").classList.remove(`${status[i - 1]}`);
       btn.closest(".book").classList.add(`${status[i]}`);
+      updateLocalStorage();
     });
   });
 }
+
+function removeBook() {
+  const btnDelete = document.querySelectorAll(".delete");
+
+  btnDelete.forEach((btn) => {
+    btn.addEventListener("click", function (e) {
+      btn.closest(".book").remove();
+    });
+  });
+
+  updateLocalStorage();
+}
+
+function updateLocalStorage() {
+  const bookdata = document.querySelector(".container").innerHTML;
+
+  localStorage.setItem("books", bookdata);
+}
+
+function getBookData() {
+  if (bookData) container.innerHTML = bookData;
+
+  //Render book UI
+  const bookUI = document.querySelectorAll(".book");
+
+  bookUI.forEach((book) => {
+    book.addEventListener("mouseenter", () => book.classList.add("hover"));
+
+    book.addEventListener("mouseleave", () => book.classList.remove("hover"));
+  });
+
+  //Change reading status
+  changeBookStatus();
+
+  //Remove book from list
+  removeBook();
+
+  updateLocalStorage();
+}
+
+getBookData();
