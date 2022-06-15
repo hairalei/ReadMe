@@ -13,7 +13,14 @@ const container = document.querySelector(".container");
 const bookData = localStorage.getItem("books");
 
 class Book {
-  constructor(title, author, pages, year, cover, status = "unread") {
+  constructor(
+    title = "unknown",
+    author = "unknown",
+    pages = "unknown no. of",
+    year = "unknown",
+    cover,
+    status = "unread"
+  ) {
     this.title = title;
     this.author = author;
     this.pages = pages;
@@ -125,7 +132,9 @@ function addBookToList() {
 function renderBookUI(book) {
   const markup = `
   <div class="book ${book.status}" style="background: url('${book.cover}">
-            <small class="book__pages">${book.pages} pages</small>
+            <small class="book__pages">${
+              book.pages ? book.pages : "?"
+            } pages</small>
 
             <div class="book__hover">
               <div class="btns-details">
@@ -135,9 +144,13 @@ function renderBookUI(book) {
               </div>
 
               <div class="book__details">
-                <h3 class="book__title">${book.title}</h3>
+                <h3 class="book__title">${
+                  book.title ? book.title : "unknown"
+                }</h3>
 
-                <h4 class="book__author">${book.author}</h4>
+                <h4 class="book__author">${
+                  book.author ? book.author : "unknown"
+                }</h4>
 
                 <button class="btn book__status ">${
                   book.status[0].toUpperCase() + book.status.slice(1)
