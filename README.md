@@ -6,7 +6,7 @@ A book tracking app where you can add books to your read list.
 
 https://hairalei.github.io/ReadMe/
 
-<img src="img/ReadMe.gif">
+![ReadMe/Library Demo](img/ReadMe.gif)
 
 ## Features
 
