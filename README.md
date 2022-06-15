@@ -7,7 +7,6 @@ A book tracking app where you can add books to your read list.
 ## Features
 
 - Search books using API and add them to the library/list
-- Edit book details
 - Delete book from library
 - Switch reading status from 'Unread' to 'Reading' to 'Read'
 - Save details to your local storage
