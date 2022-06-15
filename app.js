@@ -48,10 +48,13 @@ async function showResults(searchItem) {
     const searchArr = data.docs.slice(0, 10);
     containerAPI.innerHTML = "";
 
+    if (data.numFound === 0) throw new Error(`Book not found. Try again.`);
+
     //Render search results
     getBookDetails(searchArr);
   } catch (err) {
-    console.error(err);
+    containerAPI.insertAdjacentHTML("afterbegin", err);
+    containerAPI.style.fontSize = "3.2rem";
   }
 }
 
@@ -235,6 +238,14 @@ btnClose.addEventListener("click", closeModal);
 
 btnSubmit.addEventListener("click", function (e) {
   e.preventDefault();
+
+  const markup = `<div class="loading" style="font-size:2.4rem">Loading...</div>`;
+
+  containerAPI.insertAdjacentHTML("beforebegin", markup);
+
+  setTimeout(() => {
+    document.querySelector(".loading").remove();
+  }, 3000);
   showResults(search.value);
 });
 
