@@ -132,7 +132,7 @@ i.read {
   background: #f0ddda;
 
   box-shadow: 0 1rem 1.5rem rgba(0, 0, 0, 0.3);
-  transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in-out;
 }
 
 .book__pages {
@@ -155,7 +155,6 @@ i.read {
 }
 
 .book__hover {
-  visibility: hidden;
   position: absolute;
   top: 0;
   left: 0;
@@ -164,12 +163,13 @@ i.read {
   background-color: rgba(0, 0, 0, 0.1);
   z-index: 5;
   padding: 0.5rem;
-  margin-top: 27rem;
-  transition: all 0.3s ease-in;
+  transform: translateY(27rem);
+
+  transition: all 0.3s ease-in-out;
 }
 
 .book.hover .book__hover {
-  margin-top: 0;
+  transform: translateY(0);
 }
 
 .btns-details {
@@ -265,6 +265,8 @@ i.read {
   font-family: inherit;
   font-size: 1.6rem;
   border-radius: 1.5rem;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
   width: 60rem;
   outline: none;
   border: none;
@@ -278,6 +280,15 @@ i.read {
 
 .modal nav .close:hover {
   color: #555;
+}
+
+.modal .btn--submit {
+  background-color: #a9a9a9;
+  padding: 0.5rem 2rem;
+  border-radius: 1.5rem;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  font-size: 1.6rem;
 }
 
 .containerAPI {
@@ -334,7 +345,8 @@ i.read {
   font-size: 1.6rem;
 }
 
-.btn--add-bookAPI:hover {
+.btn--add-bookAPI:hover,
+.modal .btn--submit:hover {
   opacity: 0.9;
 }
 
@@ -381,6 +393,18 @@ i.read {
 
   .btn--add-bookAPI {
     margin-top: 1.5rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .btn--submit {
+    visibility: hidden;
+  }
+
+  .modal input {
+    border-radius: 1.5rem;
+    border-top-right-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
   }
 }
 

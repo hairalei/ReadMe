@@ -39,7 +39,7 @@
         </div>
 
         <div class="container">
-          <div class="book hover">
+          <div class="book">
             <small class="book__pages">413 pages</small>
 
             <div class="book__hover">
@@ -48,7 +48,7 @@
                   <i class="fa-solid fa-pen edit"></i>
                 </button>
                 <button class="btn delete">
-                  <i class="fa-solid fa-trash-can"></i>
+                  <i class="fa-solid fa-trash-can delete"></i>
                 </button>
               </div>
 
@@ -69,66 +69,21 @@
 
     <section class="modal">
       <nav>
-        <form action="#">
+        <form action="#" method="get">
           <input
             type="text"
             id="search"
             class="search"
             placeholder="Search book..."
           />
+          <button type="submit" class="btn btn--submit">Search</button>
         </form>
         <button class="btn close">
           <i class="fa-solid fa-xmark"></i>
         </button>
       </nav>
 
-      <div class="containerAPI">
-        <div class="bookAPI__container">
-          <img
-            src="https://covers.openlibrary.org/b/id/7235415-M.jpg"
-            alt="book"
-            class="bookAPI__img"
-          />
-
-          <div class="bookAPI__details">
-            <p class="bookAPI__title">The Lightning Thief</p>
-            <p class="bookAPI__author">by Rick Riordan</p>
-            <p class="bookAPI__date">2006</p>
-            <p class="bookAPI__pages">396 pages</p>
-            <button class="btn btn--add-bookAPI">Add Book</button>
-          </div>
-        </div>
-        <div class="bookAPI__container">
-          <img
-            src="https://covers.openlibrary.org/b/id/7235415-M.jpg"
-            alt="book"
-            class="bookAPI__img"
-          />
-
-          <div class="bookAPI__details">
-            <p class="bookAPI__title">The Lightning Thief</p>
-            <p class="bookAPI__author">by Rick Riordan</p>
-            <p class="bookAPI__date">2006</p>
-            <p class="bookAPI__pages">396 pages</p>
-            <button class="btn btn--add-bookAPI">Add Book</button>
-          </div>
-        </div>
-        <div class="bookAPI__container">
-          <img
-            src="https://covers.openlibrary.org/b/id/7235415-M.jpg"
-            alt="book"
-            class="bookAPI__img"
-          />
-
-          <div class="bookAPI__details">
-            <p class="bookAPI__title">The Lightning Thief</p>
-            <p class="bookAPI__author">by Rick Riordan</p>
-            <p class="bookAPI__date">2006</p>
-            <p class="bookAPI__pages">396 pages</p>
-            <button class="btn btn--add-bookAPI">Add Book</button>
-          </div>
-        </div>
-      </div>
+      <div class="containerAPI"></div>
     </section>
   </body>
 </html>
