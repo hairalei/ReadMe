@@ -168,24 +168,24 @@ function renderBookUI(book) {
 
 function changeBookStatus() {
   const btnStatus = document.querySelectorAll(".book__status");
-  let i = 0;
 
   btnStatus.forEach((btn) => {
     btn.addEventListener("click", function (e) {
-      const status = ["unread", "reading", "read"];
-      i++;
+      const prevStatus = btn.innerHTML.toLowerCase();
+      btn.closest(".book").classList.remove(prevStatus);
 
-      if (i >= status.length) i = 0;
+      let currentStatus;
 
-      console.log(i);
+      if (prevStatus === "unread") {
+        currentStatus = "reading";
+      } else if (prevStatus === "reading") {
+        currentStatus = "read";
+      } else if (prevStatus === "read") {
+        currentStatus = "unread";
+      }
 
-      btn.innerText = status[i][0].toUpperCase() + status[i].slice(1);
-
-      if (i === 0)
-        btn.closest(".book").classList.remove(`${status[status.length - 1]}`);
-
-      btn.closest(".book").classList.remove(`${status[i - 1]}`);
-      btn.closest(".book").classList.add(`${status[i]}`);
+      btn.innerHTML = currentStatus[0].toUpperCase() + currentStatus.slice(1);
+      btn.closest(".book").classList.add(currentStatus);
       updateLocalStorage();
     });
   });
@@ -197,10 +197,9 @@ function removeBook() {
   btnDelete.forEach((btn) => {
     btn.addEventListener("click", function (e) {
       btn.closest(".book").remove();
+      updateLocalStorage();
     });
   });
-
-  updateLocalStorage();
 }
 
 function updateLocalStorage() {
