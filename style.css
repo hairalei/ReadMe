@@ -135,6 +135,16 @@ i.read {
   transition: all 0.3s ease-in-out;
 }
 
+.book.read {
+  border-left: 2rem solid var(--read);
+}
+.book.unread {
+  border-left: 2rem solid var(--unread);
+}
+.book.reading {
+  border-left: 2rem solid var(--reading);
+}
+
 .book__pages {
   position: absolute;
   bottom: 2rem;
@@ -145,8 +155,9 @@ i.read {
   padding: 0.1rem 0.5rem;
   border-radius: 0.3rem;
   color: #555;
-  background-color: rgba(0, 0, 0, 0.1);
-  z-index: 5;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  z-index: 99;
 }
 
 .book.hover .book__details,
@@ -160,8 +171,9 @@ i.read {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.1);
-  z-index: 5;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  z-index: 99;
   padding: 0.5rem;
   transform: translateY(27rem);
 
@@ -211,8 +223,11 @@ i.read {
 
 .book__status {
   font-size: 1.4rem;
-  margin-top: 11rem;
   color: #555;
+  position: absolute;
+  width: 100%;
+  bottom: 15%;
+  left: 0;
 }
 
 .book__status:hover {

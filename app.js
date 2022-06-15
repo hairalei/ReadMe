@@ -9,14 +9,11 @@ const btnStatus = document.querySelector(".book__status");
 const modal = document.querySelector(".modal");
 const content = document.querySelector(".content");
 const layer = document.querySelector(".layer");
-const bookUI = document.querySelector(".book");
 const search = document.querySelector(".search");
 const containerAPI = document.querySelector(".containerAPI");
+const container = document.querySelector(".container");
 
 //////////////////Event listeners
-bookUI.addEventListener("mouseenter", () => bookUI.classList.add("hover"));
-
-bookUI.addEventListener("mouseleave", () => bookUI.classList.remove("hover"));
 
 btnAddBook.addEventListener("click", showModal);
 
@@ -41,7 +38,7 @@ function closeModal() {
 }
 
 class Book {
-  constructor(title, author, pages, year, cover, status = "read") {
+  constructor(title, author, pages, year, cover, status = "unread") {
     this.title = title;
     this.author = author;
     this.pages = pages;
@@ -63,6 +60,8 @@ async function showResults(searchItem) {
     const data = await res.json();
     const searchArr = data.docs.slice(0, 10);
     containerAPI.innerHTML = "";
+
+    //Render search results
     getBookDetails(searchArr);
   } catch (err) {
     console.error(err);
@@ -70,8 +69,6 @@ async function showResults(searchItem) {
 }
 
 function getBookDetails(searchArr) {
-  console.log(searchArr[0]);
-
   for (let i = 0; i < searchArr.length; i++) {
     let {
       title,
@@ -80,7 +77,6 @@ function getBookDetails(searchArr) {
       number_of_pages_median: pages,
       cover_i: cover,
     } = searchArr[i];
-    console.log(cover);
 
     const bookAPI = new Book(title, author, pages, year, cover);
 
@@ -105,4 +101,72 @@ function getBookDetails(searchArr) {
     `;
     containerAPI.insertAdjacentHTML("beforeend", markup);
   }
+
+  setTimeout(() => {
+    addBookToList();
+  }, 5000);
+}
+
+function addBookToList() {
+  const btnAddbookAPI = modal.querySelectorAll(".btn--add-bookAPI");
+
+  btnAddbookAPI.forEach((btn) => {
+    btn.addEventListener("click", function (e) {
+      console.log(e.target.closest(".bookAPI__details"));
+      const parent = e.target.closest(".bookAPI__details");
+      const title = parent.querySelector(".bookAPI__title").innerHTML;
+      const author = parent
+        .querySelector(".bookAPI__author")
+        .innerHTML.slice(3);
+      let pages = parent.querySelector(".bookAPI__pages").innerHTML;
+      pages = parseInt(pages);
+      const img = parent
+        .closest(".bookAPI__container")
+        .querySelector(".bookAPI__img")
+        .getAttribute("src");
+      console.log(img);
+
+      const bookFromAPI = new Book(title, author, pages, 0, img);
+      console.log(bookFromAPI);
+      renderBookUI(bookFromAPI);
+    });
+  });
+}
+
+function renderBookUI(book) {
+  console.log(book.title);
+
+  const markup = `
+  <div class="book ${book.status}" style="background: url('${book.cover}">
+            <small class="book__pages">${book.pages} pages</small>
+
+            <div class="book__hover">
+              <div class="btns-details">
+                <button class="btn delete">
+                  <i class="fa-solid fa-trash-can delete"></i>
+                </button>
+              </div>
+
+              <div class="book__details">
+                <h3 class="book__title">${book.title}</h3>
+
+                <h4 class="book__author">${book.author}</h4>
+
+                <button class="btn book__status ">${
+                  book.status[0].toUpperCase() + book.status.slice(1)
+                }</button>
+              </div>
+            </div>
+          </div>
+  `;
+
+  container.insertAdjacentHTML("beforeend", markup);
+
+  const bookUI = document.querySelectorAll(".book");
+
+  bookUI.forEach((book) => {
+    book.addEventListener("mouseenter", () => book.classList.add("hover"));
+
+    book.addEventListener("mouseleave", () => book.classList.remove("hover"));
+  });
 }
