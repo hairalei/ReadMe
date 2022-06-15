@@ -155,14 +155,7 @@ function renderBookUI(book) {
 
   container.insertAdjacentHTML("beforeend", markup);
 
-  //Render book UI
-  const bookUI = document.querySelectorAll(".book");
-
-  bookUI.forEach((book) => {
-    book.addEventListener("mouseenter", () => book.classList.add("hover"));
-
-    book.addEventListener("mouseleave", () => book.classList.remove("hover"));
-  });
+  addBookHover();
 
   //Change reading status
   changeBookStatus();
@@ -219,22 +212,26 @@ function updateLocalStorage() {
 function getBookData() {
   if (bookData) container.innerHTML = bookData;
 
-  //Render book UI
-  const bookUI = document.querySelectorAll(".book");
-
-  bookUI.forEach((book) => {
-    book.addEventListener("mouseenter", () => book.classList.add("hover"));
-
-    book.addEventListener("mouseleave", () => book.classList.remove("hover"));
-  });
+  addBookHover();
 
   //Change reading status
   changeBookStatus();
 
   //Remove book from list
   removeBook();
-
-  updateLocalStorage();
 }
 
 getBookData();
+
+function addBookHover() {
+  const bookUI = document.querySelectorAll(".book");
+
+  bookUI.forEach((book) => {
+    book.addEventListener("mouseenter", () => book.classList.add("hover"));
+
+    book.addEventListener("mouseleave", () => {
+      book.classList.remove("hover");
+      updateLocalStorage();
+    });
+  });
+}
