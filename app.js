@@ -102,9 +102,7 @@ function getBookDetails(searchArr) {
     containerAPI.insertAdjacentHTML("beforeend", markup);
   }
 
-  setTimeout(() => {
-    addBookToList();
-  }, 5000);
+  addBookToList();
 }
 
 function addBookToList() {
