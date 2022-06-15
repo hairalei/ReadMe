@@ -4,6 +4,8 @@ A book tracking app where you can add books to your read list.
 
 ## Live preview
 
+https://hairalei.github.io/ReadMe/
+
 ## Features
 
 - Search books using API and add them to the library/list
