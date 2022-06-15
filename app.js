@@ -5,7 +5,6 @@ const btnSubmit = document.querySelector(".btn--submit");
 const btnEdit = document.querySelector(".edit");
 const btnDelete = document.querySelector(".delete");
 const btnClose = document.querySelector(".close");
-const btnStatus = document.querySelector(".book__status");
 const modal = document.querySelector(".modal");
 const content = document.querySelector(".content");
 const layer = document.querySelector(".layer");
@@ -13,6 +12,7 @@ const search = document.querySelector(".search");
 const containerAPI = document.querySelector(".containerAPI");
 const container = document.querySelector(".container");
 
+let btnStatus;
 //////////////////Event listeners
 
 btnAddBook.addEventListener("click", showModal);
@@ -160,11 +160,35 @@ function renderBookUI(book) {
 
   container.insertAdjacentHTML("beforeend", markup);
 
+  //Render book UI
   const bookUI = document.querySelectorAll(".book");
 
   bookUI.forEach((book) => {
     book.addEventListener("mouseenter", () => book.classList.add("hover"));
 
     book.addEventListener("mouseleave", () => book.classList.remove("hover"));
+  });
+
+  //Change reading status
+  btnStatus = document.querySelectorAll(".book__status");
+  let i = 0;
+
+  btnStatus.forEach((btn) => {
+    btn.addEventListener("click", function (e) {
+      const status = ["unread", "reading", "read"];
+      i++;
+
+      if (i >= status.length) i = 0;
+
+      console.log(i);
+
+      btn.innerText = status[i][0].toUpperCase() + status[i].slice(1);
+
+      if (i === 0)
+        btn.closest(".book").classList.remove(`${status[status.length - 1]}`);
+
+      btn.closest(".book").classList.remove(`${status[i - 1]}`);
+      btn.closest(".book").classList.add(`${status[i]}`);
+    });
   });
 }
