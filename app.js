@@ -12,18 +12,16 @@ const container = document.querySelector(".container");
 
 const bookData = localStorage.getItem("books");
 
-//////////////////Event listeners
-
-btnAddBook.addEventListener("click", showModal);
-
-layer.addEventListener("click", closeModal);
-
-btnClose.addEventListener("click", closeModal);
-
-btnSubmit.addEventListener("click", function (e) {
-  e.preventDefault();
-  showResults(search.value);
-});
+class Book {
+  constructor(title, author, pages, year, cover, status = "unread") {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.year = year;
+    this.cover = cover;
+    this.status = status;
+  }
+}
 
 /////////////////Functions
 function showModal() {
@@ -36,17 +34,7 @@ function closeModal() {
   content.classList.remove("show");
 }
 
-class Book {
-  constructor(title, author, pages, year, cover, status = "unread") {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.year = year;
-    this.cover = cover;
-    this.status = status;
-  }
-}
-
+//Show search results from API
 async function showResults(searchItem) {
   try {
     const titleSearch = searchItem;
@@ -67,6 +55,7 @@ async function showResults(searchItem) {
   }
 }
 
+//Get book details from API and render search results
 function getBookDetails(searchArr) {
   for (let i = 0; i < searchArr.length; i++) {
     let {
@@ -104,6 +93,7 @@ function getBookDetails(searchArr) {
   addBookToList();
 }
 
+//Add book from search results to library
 function addBookToList() {
   const btnAddbookAPI = modal.querySelectorAll(".btn--add-bookAPI");
 
@@ -128,6 +118,7 @@ function addBookToList() {
   });
 }
 
+//Render book UI
 function renderBookUI(book) {
   const markup = `
   <div class="book ${book.status}" style="background: url('${book.cover}">
@@ -220,8 +211,7 @@ function getBookData() {
   removeBook();
 }
 
-getBookData();
-
+//Show book details when hovering
 function addBookHover() {
   const bookUI = document.querySelectorAll(".book");
 
@@ -234,3 +224,20 @@ function addBookHover() {
     });
   });
 }
+
+//////////////////Event listeners
+
+btnAddBook.addEventListener("click", showModal);
+
+layer.addEventListener("click", closeModal);
+
+btnClose.addEventListener("click", closeModal);
+
+btnSubmit.addEventListener("click", function (e) {
+  e.preventDefault();
+  showResults(search.value);
+});
+
+////
+
+getBookData();
