@@ -306,6 +306,14 @@ i.read {
   font-size: 1.6rem;
 }
 
+.loading {
+  font-size: 2.4rem;
+  position: absolute;
+  top: 10rem;
+  left: 5rem;
+  z-index: -1;
+}
+
 .containerAPI {
   margin: 2rem auto;
   display: flex;
@@ -363,6 +371,30 @@ i.read {
 .btn--add-bookAPI:hover,
 .modal .btn--submit:hover {
   opacity: 0.9;
+}
+
+/************* HELPERS  *************/
+#unread,
+#reading,
+#read {
+  cursor: pointer;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: visible;
+}
+
+.show-all {
+  cursor: pointer;
+  position: absolute;
+  top: 19rem;
+  left: 3rem;
+  font-size: 1.6rem;
+  color: #555;
 }
 
 /************* MEDIA QUERIES SECTION  *************/

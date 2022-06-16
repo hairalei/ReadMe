@@ -3,12 +3,19 @@
 const btnAddBook = document.querySelector(".btn--add");
 const btnSubmit = document.querySelector(".btn--submit");
 const btnClose = document.querySelector(".close");
+
 const modal = document.querySelector(".modal");
 const content = document.querySelector(".content");
 const layer = document.querySelector(".layer");
+
 const search = document.querySelector(".search");
 const containerAPI = document.querySelector(".containerAPI");
 const container = document.querySelector(".container");
+
+const legendUnread = document.querySelector("#unread");
+const legendReading = document.querySelector("#reading");
+const legendRead = document.querySelector("#read");
+const legendShowAll = document.querySelector(".show-all");
 
 const bookData = localStorage.getItem("books");
 
@@ -121,8 +128,7 @@ function addBookToList() {
       let pages = parent.querySelector(".bookAPI__pages").innerHTML;
       pages = parseInt(pages);
 
-      const bookFromAPI = new Book(title, author, pages, 0, img);
-      console.log(bookFromAPI);
+      const bookFromAPI = new Book(title, author, pages, null, img);
       renderBookUI(bookFromAPI);
     });
   });
@@ -162,68 +168,17 @@ function renderBookUI(book) {
 
   container.insertAdjacentHTML("beforeend", markup);
 
-  addBookHover();
-
-  //Change reading status
-  changeBookStatus();
-
-  //Remove book from list
-  removeBook();
+  addBookActions();
 
   updateLocalStorage();
 }
 
-function changeBookStatus() {
-  const btnStatus = document.querySelectorAll(".book__status");
-
-  btnStatus.forEach((btn) => {
-    btn.addEventListener("click", function (e) {
-      const prevStatus = btn.innerHTML.toLowerCase();
-      btn.closest(".book").classList.remove(prevStatus);
-
-      let currentStatus;
-
-      if (prevStatus === "unread") {
-        currentStatus = "reading";
-      } else if (prevStatus === "reading") {
-        currentStatus = "read";
-      } else if (prevStatus === "read") {
-        currentStatus = "unread";
-      }
-
-      btn.innerHTML = currentStatus[0].toUpperCase() + currentStatus.slice(1);
-      btn.closest(".book").classList.add(currentStatus);
-      updateLocalStorage();
-    });
-  });
-}
-
-function removeBook() {
-  const btnDelete = document.querySelectorAll(".delete");
-
-  btnDelete.forEach((btn) => {
-    btn.addEventListener("click", function (e) {
-      btn.closest(".book").remove();
-      updateLocalStorage();
-    });
-  });
-}
-
-function updateLocalStorage() {
-  const bookdata = document.querySelector(".container").innerHTML;
-
-  localStorage.setItem("books", bookdata);
-}
-
-function getBookData() {
-  if (bookData) container.innerHTML = bookData;
-
+//Add hover effect to change reading status and delete books
+function addBookActions() {
   addBookHover();
 
-  //Change reading status
   changeBookStatus();
 
-  //Remove book from list
   removeBook();
 }
 
@@ -236,9 +191,83 @@ function addBookHover() {
 
     book.addEventListener("mouseleave", () => {
       book.classList.remove("hover");
+    });
+  });
+}
+
+//Change reading status
+function changeBookStatus() {
+  const btnStatus = document.querySelectorAll(".book__status");
+
+  btnStatus.forEach((btn) => {
+    btn.addEventListener("click", function (e) {
+      const book = btn.closest(".book");
+      const prevStatus = btn.innerHTML.toLowerCase();
+      book.classList.remove(prevStatus);
+
+      let currentStatus;
+
+      if (prevStatus === "unread") {
+        currentStatus = "reading";
+      } else if (prevStatus === "reading") {
+        currentStatus = "read";
+      } else if (prevStatus === "read") {
+        currentStatus = "unread";
+      }
+
+      btn.innerHTML = currentStatus[0].toUpperCase() + currentStatus.slice(1);
+      book.classList.add(currentStatus);
+
+      book.addEventListener("mouseleave", updateLocalStorage);
+    });
+  });
+}
+
+//Remove book from list
+function removeBook() {
+  const btnDelete = document.querySelectorAll(".delete");
+
+  btnDelete.forEach((btn) => {
+    btn.addEventListener("click", function (e) {
+      btn.closest(".book").remove();
       updateLocalStorage();
     });
   });
+}
+
+//Save to local storage
+function updateLocalStorage() {
+  const bookdata = document.querySelector(".container").innerHTML;
+
+  localStorage.setItem("books", bookdata);
+}
+
+//Load data from local storage
+function getBookData() {
+  if (bookData) container.innerHTML = bookData;
+
+  showAll();
+  addBookActions();
+}
+
+//Group books by reading status
+function groupBooksByStatus(bookStatus) {
+  const books = container.querySelectorAll(".book");
+  const showAll = document.querySelector(".show-all");
+
+  //Show the 'show all' button
+  if (container.querySelectorAll(".hide")) showAll.classList.remove("hide");
+
+  books.forEach((book) => {
+    book.classList.remove("hide");
+
+    if (!book.classList.contains(bookStatus)) book.classList.toggle("hide");
+  });
+}
+
+function showAll() {
+  const books = container.querySelectorAll(".book");
+  books.forEach((book) => book.classList.remove("hide"));
 }
 
 //////////////////Event listeners
@@ -251,17 +280,36 @@ btnClose.addEventListener("click", closeModal);
 
 btnSubmit.addEventListener("click", function (e) {
   e.preventDefault();
+  containerAPI.innerHTML = "";
 
-  const markup = `<div class="loading" style="font-size:2.4rem">Loading...</div>`;
-
-  containerAPI.insertAdjacentHTML("beforebegin", markup);
+  const loading = modal.querySelector(".loading");
+  loading.classList.remove("hide");
 
   setTimeout(() => {
-    document.querySelector(".loading").remove();
-  }, 3000);
+    loading.classList.add("hide");
+  }, 10000);
+
   showResults(search.value);
 });
 
-////
+//Group books by reading status buttons
+legendUnread.addEventListener("click", (e) => {
+  groupBooksByStatus("unread");
+});
 
+legendReading.addEventListener("click", (e) => {
+  groupBooksByStatus("reading");
+});
+
+legendRead.addEventListener("click", (e) => {
+  groupBooksByStatus("read");
+});
+
+legendShowAll.addEventListener("click", function () {
+  showAll();
+  this.classList.add("hide");
+});
+
+/////////
+//Load data from local storage
 getBookData();

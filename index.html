@@ -33,9 +33,13 @@
         <div class="main__header">
           <div class="legends">
             <ul>
-              <li><i class="fa-solid fa-square unread"></i>Unread</li>
-              <li><i class="fa-solid fa-square reading"></i>Reading</li>
-              <li><i class="fa-solid fa-square read"></i>Read</li>
+              <li id="unread">
+                <i class="fa-solid fa-square unread"></i>Unread
+              </li>
+              <li id="reading">
+                <i class="fa-solid fa-square reading"></i>Reading
+              </li>
+              <li id="read"><i class="fa-solid fa-square read"></i>Read</li>
             </ul>
           </div>
 
@@ -47,6 +51,7 @@
     </div>
 
     <div class="layer"></div>
+    <span class="show-all hide">Show All</span>
 
     <section class="modal">
       <nav>
@@ -63,6 +68,8 @@
           <i class="fa-solid fa-xmark"></i>
         </button>
       </nav>
+
+      <div class="loading hide">Loading...</div>
 
       <div class="containerAPI"></div>
     </section>
