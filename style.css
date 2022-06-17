@@ -194,10 +194,17 @@ i.read {
 }
 
 .btns-details .btn {
-  width: 2rem;
-  height: 2rem;
+  width: 2.5rem;
+  height: 2.5rem;
   border-radius: 50%;
   margin: 0.3rem;
+}
+
+.fa-solid.fa-trash-can.delete {
+  font-size: 1.2rem;
+  text-align: center;
+  color: var(--unread);
+  stroke: var(--unread);
 }
 
 .btns-details .btn:hover {
@@ -451,6 +458,20 @@ i.read {
 
   .btn--add-bookAPI {
     margin-top: 1.5rem;
+  }
+
+  .btns-details .btn {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    margin: 0.3rem;
+  }
+
+  .fa-solid.fa-trash-can.delete {
+    font-size: 1.4rem;
+    text-align: center;
+    color: var(--unread);
+    stroke: var(--unread);
   }
 }
 
