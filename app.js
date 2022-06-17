@@ -298,6 +298,8 @@ btnSubmit.addEventListener("click", function (e) {
   setTimeout(() => {
     loading.classList.add("hide");
   }, 15000);
+
+  showResults(search.value);
 });
 
 //Group books by reading status buttons
