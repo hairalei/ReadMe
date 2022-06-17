@@ -407,6 +407,7 @@ i.read {
     align-items: center;
     justify-content: center;
   }
+}
 
 @media (max-width: 950px) {
   .modal {
@@ -481,7 +482,7 @@ i.read {
   .book {
     margin: 1rem;
   }
-  
+
   .modal input {
     width: 20rem;
   }
