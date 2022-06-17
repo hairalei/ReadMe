@@ -197,7 +197,10 @@ function addBookHover() {
     });
 
     //For mobile phones
-    book.addEventListener("touch", () => book.classList.toggle("hover"));
+    book.addEventListener("touch", (e) => {
+      e.preventDefault();
+      book.classList.toggle("hover");
+    });
   });
 }
 
