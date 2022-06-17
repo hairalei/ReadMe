@@ -476,9 +476,15 @@ i.read {
     justify-content: center;
   }
 
+  .btn--add {
+    margin: 0 auto;
+    margin-top: 1rem;
+  }
+
   .container {
     align-items: center;
     justify-content: center;
+    margin-top: 2rem;
   }
 
   .book {
