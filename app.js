@@ -223,8 +223,7 @@ function changeBookStatus() {
 
       btn.innerHTML = currentStatus[0].toUpperCase() + currentStatus.slice(1);
       book.classList.add(currentStatus);
-
-      book.addEventListener("mouseleave", updateLocalStorage);
+      updateLocalStorage();
     });
   });
 }
@@ -251,6 +250,9 @@ function updateLocalStorage() {
 //Load data from local storage
 function getBookData() {
   if (bookData) container.innerHTML = bookData;
+
+  const books = container.querySelectorAll(".book");
+  books.forEach((book) => book.classList.remove("hover"));
 
   showAll();
   addBookActions();
