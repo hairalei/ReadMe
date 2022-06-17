@@ -48,12 +48,13 @@ body {
   align-items: center;
 
   font-size: 3.2rem;
+  color: #222;
 }
 
 .logo i {
   margin-right: 0.5rem;
   font-size: 4.2rem;
-  padding: 0 3rem;
+  padding-left: 3rem;
 }
 
 /************* MAIN HEADER SECTION  *************/
@@ -469,6 +470,7 @@ i.read {
   .logo {
     justify-content: center;
   }
+
   .main__header {
     flex-direction: column;
     justify-content: center;
