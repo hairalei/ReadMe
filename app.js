@@ -130,6 +130,9 @@ function addBookToList() {
 
       const bookFromAPI = new Book(title, author, pages, null, img);
       renderBookUI(bookFromAPI);
+
+      btn.textContent = "Added";
+      btn.disabled = true;
     });
   });
 }
@@ -137,7 +140,7 @@ function addBookToList() {
 //Render book UI
 function renderBookUI(book) {
   const markup = `
-  <div class="book ${book.status}" style="background: url('${book.cover}">
+  <div class="book ${book.status} " style="background: url('${book.cover}">
             <small class="book__pages">${
               book.pages ? book.pages : "?"
             } pages</small>
