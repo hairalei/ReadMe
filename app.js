@@ -282,6 +282,8 @@ btnSubmit.addEventListener("click", function (e) {
   e.preventDefault();
   containerAPI.innerHTML = "";
 
+  if (!search.value) return;
+
   const loading = modal.querySelector(".loading");
   loading.classList.remove("hide");
 
