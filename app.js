@@ -203,7 +203,7 @@ function addBookHover() {
 
       setTimeout(() => {
         book.classList.remove("hover");
-      }, 3000);
+      }, 5000);
     });
   });
 }
