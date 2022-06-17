@@ -195,6 +195,9 @@ function addBookHover() {
     book.addEventListener("mouseleave", () => {
       book.classList.remove("hover");
     });
+
+    //For mobile phones
+    book.addEventListener("touch", () => book.classList.toggle("hover"));
   });
 }
 
