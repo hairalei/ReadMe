@@ -197,7 +197,7 @@ function addBookHover() {
     });
 
     //For mobile phones
-    book.addEventListener("touchstart", (e) => {
+    book.addEventListener("click", (e) => {
       e.preventDefault();
       book.classList.toggle("hover");
     });
