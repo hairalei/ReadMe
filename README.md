@@ -1,6 +1,6 @@
 # Library
 
-A book tracking app where you can add books to your read list using API and change reading status anytime.
+A book tracking app where you can add books to your read list using API, change reading status, and save it to your local storage.
 
 ## Live preview
 
